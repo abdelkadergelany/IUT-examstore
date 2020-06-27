@@ -1,7 +1,7 @@
 
-export const Exams = (state = { }, action) => {
+export const Sem = (state = { }, action) => {
     switch (action.type){
-    case 'FETCH_EXAMS':
+    case 'FETCH_EXAMSGG':
      return {...state,payload:action.payload};
     default:
     return state;

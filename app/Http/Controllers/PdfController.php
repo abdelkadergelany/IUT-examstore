@@ -9,7 +9,12 @@ class PdfController extends Controller
     //
     public function index(Request $request)
     {
-        $pdf = PdfModel::where('dept',$request->dept)->where('semester',$request->semester)->get();
-        return  $pdf;
+
+    }
+    public function getPdf(Request $request)
+    {
+        $res = PdfModel::where('dept','like',$request->dept)->where('semester','like',(int)$request->sem)->get();
+
+        return ($res);
     }
 }

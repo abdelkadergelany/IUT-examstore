@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/pdf', 'PdfController@index')->name('home');
+Route::get('/pdf', 'PdfController@getPdf')->name('home');
