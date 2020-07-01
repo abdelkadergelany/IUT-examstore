@@ -11,7 +11,7 @@ const store = ConfigureStore();
 
 function Index() {
     AppendScript('./js/myjs.js');
-
+    console.log(this.props)
     return (
         <Provider store={store}>
         <BrowserRouter>
