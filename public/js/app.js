@@ -75537,6 +75537,598 @@ _defineProperty(Pagination, "defaultProps", {
 
 /***/ }),
 
+/***/ "./node_modules/react-promise-tracker/lib/constants.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/react-promise-tracker/lib/constants.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.defaultArea = void 0;
+var defaultArea = 'default-area';
+exports.defaultArea = defaultArea;
+
+/***/ }),
+
+/***/ "./node_modules/react-promise-tracker/lib/index.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/react-promise-tracker/lib/index.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "trackPromise", {
+  enumerable: true,
+  get: function get() {
+    return _trackPromise.trackPromise;
+  }
+});
+Object.defineProperty(exports, "manuallyResetPromiseCounter", {
+  enumerable: true,
+  get: function get() {
+    return _trackPromise.manuallyResetPromiseCounter;
+  }
+});
+Object.defineProperty(exports, "manuallyDecrementPromiseCounter", {
+  enumerable: true,
+  get: function get() {
+    return _trackPromise.manuallyDecrementPromiseCounter;
+  }
+});
+Object.defineProperty(exports, "manuallyIncrementPromiseCounter", {
+  enumerable: true,
+  get: function get() {
+    return _trackPromise.manuallyIncrementPromiseCounter;
+  }
+});
+Object.defineProperty(exports, "promiseTrackerHoc", {
+  enumerable: true,
+  get: function get() {
+    return _trackerHoc.promiseTrackerHoc;
+  }
+});
+Object.defineProperty(exports, "usePromiseTracker", {
+  enumerable: true,
+  get: function get() {
+    return _trackerHook.usePromiseTracker;
+  }
+});
+
+var _trackPromise = __webpack_require__(/*! ./trackPromise */ "./node_modules/react-promise-tracker/lib/trackPromise.js");
+
+var _trackerHoc = __webpack_require__(/*! ./trackerHoc */ "./node_modules/react-promise-tracker/lib/trackerHoc.js");
+
+var _trackerHook = __webpack_require__(/*! ./trackerHook */ "./node_modules/react-promise-tracker/lib/trackerHook.js");
+
+/***/ }),
+
+/***/ "./node_modules/react-promise-tracker/lib/setupConfig.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/react-promise-tracker/lib/setupConfig.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setupConfig = exports.defaultConfig = void 0;
+
+var _constants = __webpack_require__(/*! ./constants */ "./node_modules/react-promise-tracker/lib/constants.js");
+
+var defaultConfig = {
+  area: _constants.defaultArea,
+  delay: 0
+}; // Defensive config setup, fulfill default values
+
+exports.defaultConfig = defaultConfig;
+
+var setupConfig = function setupConfig(outerConfig) {
+  return {
+    area: !outerConfig || !outerConfig.area ? _constants.defaultArea : outerConfig.area,
+    delay: !outerConfig || !outerConfig.delay ? 0 : outerConfig.delay
+  };
+};
+
+exports.setupConfig = setupConfig;
+
+/***/ }),
+
+/***/ "./node_modules/react-promise-tracker/lib/tinyEmmiter.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/react-promise-tracker/lib/tinyEmmiter.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Emitter = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// Based on:
+// https://github.com/scottcorgan/tiny-emitter
+// class based
+var Emitter =
+/*#__PURE__*/
+function () {
+  function Emitter() {
+    _classCallCheck(this, Emitter);
+  }
+
+  _createClass(Emitter, [{
+    key: "emit",
+    value: function emit(event) {
+      if (!event) return this;
+
+      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
+      }
+
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this._e(event)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var fn = _step.value;
+          fn.apply(fn.ctx, [].concat(args));
+          if (fn.off_event == true) this.off(event, fn);
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      return this;
+    }
+  }, {
+    key: "on",
+    value: function on(event, fn, ctx) {
+      if (!event) return this;
+      fn.ctx = ctx;
+
+      this._e(event).push(fn);
+
+      return this;
+    }
+  }, {
+    key: "once",
+    value: function once(event, fn, ctx) {
+      if (!event) return this;
+      fn.ctx = ctx;
+      fn.off_event = true;
+      return this.on(event, fn);
+    }
+  }, {
+    key: "off",
+    value: function off(event, fn) {
+      if (!event) return this;
+      if (!this[event]) return this;
+
+      var e = this._e(event);
+
+      if (!fn) {
+        delete this[event];
+        return this;
+      }
+
+      this[event] = e.filter(function (f) {
+        return f != fn;
+      });
+      return this;
+    }
+  }, {
+    key: "_e",
+    value: function _e(e) {
+      return this[e] || (this[e] = []);
+    }
+  }]);
+
+  return Emitter;
+}();
+
+exports.Emitter = Emitter;
+
+/***/ }),
+
+/***/ "./node_modules/react-promise-tracker/lib/trackPromise.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/react-promise-tracker/lib/trackPromise.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.manuallyIncrementPromiseCounter = exports.manuallyDecrementPromiseCounter = exports.manuallyResetPromiseCounter = exports.trackPromise = exports.getCounter = exports.promiseCounterUpdateEventId = exports.emitter = void 0;
+
+var _tinyEmmiter = __webpack_require__(/*! ./tinyEmmiter */ "./node_modules/react-promise-tracker/lib/tinyEmmiter.js");
+
+var _constants = __webpack_require__(/*! ./constants */ "./node_modules/react-promise-tracker/lib/constants.js");
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var emitter = new _tinyEmmiter.Emitter();
+exports.emitter = emitter;
+var promiseCounterUpdateEventId = "promise-counter-update";
+exports.promiseCounterUpdateEventId = promiseCounterUpdateEventId;
+
+var counter = _defineProperty({}, _constants.defaultArea, 0);
+
+var getCounter = function getCounter(area) {
+  return counter[area];
+};
+
+exports.getCounter = getCounter;
+
+var trackPromise = function trackPromise(promise, area) {
+  area = area || _constants.defaultArea;
+  incrementPromiseCounter(area);
+
+  var onResolveHandler = function onResolveHandler() {
+    return decrementPromiseCounter(area);
+  };
+
+  promise.then(onResolveHandler, onResolveHandler);
+  return promise;
+};
+
+exports.trackPromise = trackPromise;
+
+var incrementPromiseCounter = function incrementPromiseCounter(area) {
+  incrementCounter(area);
+  var promiseInProgress = anyPromiseInProgress(area);
+  emitter.emit(promiseCounterUpdateEventId, promiseInProgress, area);
+};
+
+var incrementCounter = function incrementCounter(area) {
+  if (Boolean(counter[area])) {
+    counter[area]++;
+  } else {
+    counter[area] = 1;
+  }
+};
+
+var anyPromiseInProgress = function anyPromiseInProgress(area) {
+  return counter[area] > 0;
+};
+
+var decrementPromiseCounter = function decrementPromiseCounter(area) {
+  counter[area] > 0 && decrementCounter(area);
+  var promiseInProgress = anyPromiseInProgress(area);
+  emitter.emit(promiseCounterUpdateEventId, promiseInProgress, area);
+};
+
+var decrementCounter = function decrementCounter(area) {
+  counter[area]--;
+};
+
+var manuallyResetPromiseCounter = function manuallyResetPromiseCounter(area) {
+  area = area || _constants.defaultArea;
+  counter[area] = 0;
+  emitter.emit(promiseCounterUpdateEventId, false, area);
+};
+
+exports.manuallyResetPromiseCounter = manuallyResetPromiseCounter;
+
+var manuallyDecrementPromiseCounter = function manuallyDecrementPromiseCounter(area) {
+  area = area || _constants.defaultArea;
+  decrementPromiseCounter(area);
+};
+
+exports.manuallyDecrementPromiseCounter = manuallyDecrementPromiseCounter;
+
+var manuallyIncrementPromiseCounter = function manuallyIncrementPromiseCounter(area) {
+  area = area || _constants.defaultArea;
+  incrementPromiseCounter(area);
+}; // TODO: Enhancement we could catch here errors and throw an Event in case there's an HTTP Error
+// then the consumer of this event can be listening and decide what to to in case of error
+
+
+exports.manuallyIncrementPromiseCounter = manuallyIncrementPromiseCounter;
+
+/***/ }),
+
+/***/ "./node_modules/react-promise-tracker/lib/trackerHoc.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/react-promise-tracker/lib/trackerHoc.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.promiseTrackerHoc = void 0;
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _trackPromise = __webpack_require__(/*! ./trackPromise */ "./node_modules/react-promise-tracker/lib/trackPromise.js");
+
+var _setupConfig = __webpack_require__(/*! ./setupConfig */ "./node_modules/react-promise-tracker/lib/setupConfig.js");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+// Props:
+// config: {
+//  area:  // can be null|undefined|'' (will default to DefaultArea) or area name
+//  delay: // Wait Xms to display the spinner (fast connections scenario avoid blinking)
+//            default value 0ms
+// }
+var promiseTrackerHoc = function promiseTrackerHoc(ComponentToWrap) {
+  return (
+    /*#__PURE__*/
+    function (_Component) {
+      _inherits(promiseTrackerComponent, _Component);
+
+      function promiseTrackerComponent(props) {
+        var _this;
+
+        _classCallCheck(this, promiseTrackerComponent);
+
+        _this = _possibleConstructorReturn(this, _getPrototypeOf(promiseTrackerComponent).call(this, props));
+        _this.state = {
+          promiseInProgress: false,
+          internalPromiseInProgress: false,
+          config: (0, _setupConfig.setupConfig)(props.config)
+        };
+        _this.notifyPromiseInProgress = _this.notifyPromiseInProgress.bind(_assertThisInitialized(_this));
+        _this.updateProgress = _this.updateProgress.bind(_assertThisInitialized(_this));
+        _this.subscribeToCounterUpdate = _this.subscribeToCounterUpdate.bind(_assertThisInitialized(_this));
+        return _this;
+      }
+
+      _createClass(promiseTrackerComponent, [{
+        key: "notifyPromiseInProgress",
+        value: function notifyPromiseInProgress() {
+          var _this2 = this;
+
+          this.state.config.delay === 0 ? this.setState({
+            promiseInProgress: true
+          }) : setTimeout(function () {
+            var progress = Boolean((0, _trackPromise.getCounter)(_this2.state.config.area) > 0);
+
+            _this2.setState({
+              promiseInProgress: progress
+            });
+          }, this.state.config.delay);
+        }
+      }, {
+        key: "updateProgress",
+        value: function updateProgress(progress, afterUpdateCallback) {
+          this.setState({
+            internalPromiseInProgress: progress
+          }, afterUpdateCallback);
+          !progress ? this.setState({
+            promiseInProgress: false
+          }) : this.notifyPromiseInProgress();
+        }
+      }, {
+        key: "subscribeToCounterUpdate",
+        value: function subscribeToCounterUpdate() {
+          var _this3 = this;
+
+          _trackPromise.emitter.on(_trackPromise.promiseCounterUpdateEventId, function (anyPromiseInProgress, area) {
+            if (_this3.state.config.area === area) {
+              _this3.updateProgress(anyPromiseInProgress);
+            }
+          });
+        }
+      }, {
+        key: "componentDidMount",
+        value: function componentDidMount() {
+          this.updateProgress(Boolean((0, _trackPromise.getCounter)(this.state.config.area) > 0), this.subscribeToCounterUpdate);
+        }
+      }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+          _trackPromise.emitter.off(_trackPromise.promiseCounterUpdateEventId);
+        }
+      }, {
+        key: "render",
+        value: function render() {
+          return _react["default"].createElement(ComponentToWrap, _extends({}, this.props, {
+            config: this.state.config,
+            promiseInProgress: this.state.promiseInProgress
+          }));
+        }
+      }]);
+
+      return promiseTrackerComponent;
+    }(_react.Component)
+  );
+};
+
+exports.promiseTrackerHoc = promiseTrackerHoc;
+
+/***/ }),
+
+/***/ "./node_modules/react-promise-tracker/lib/trackerHook.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/react-promise-tracker/lib/trackerHook.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.usePromiseTracker = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _trackPromise = __webpack_require__(/*! ./trackPromise */ "./node_modules/react-promise-tracker/lib/trackPromise.js");
+
+var _setupConfig = __webpack_require__(/*! ./setupConfig */ "./node_modules/react-promise-tracker/lib/setupConfig.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var usePromiseTracker = function usePromiseTracker() {
+  var outerConfig = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _setupConfig.defaultConfig;
+
+  var isMounted = _react["default"].useRef(false);
+
+  _react["default"].useEffect(function () {
+    isMounted.current = true;
+    return function () {
+      return isMounted.current = false;
+    };
+  }, []); // Included in state, it will be evaluated just the first time,
+  // TODO: discuss if this is a good approach
+  // We need to apply defensive programming, ensure area and delay default to secure data
+  // cover cases like not all params informed, set secure defaults
+
+
+  var _React$useState = _react["default"].useState((0, _setupConfig.setupConfig)(outerConfig)),
+      _React$useState2 = _slicedToArray(_React$useState, 1),
+      config = _React$useState2[0]; // Edge case, when we start the application if we are loading just onComponentDidMount
+  // data, event emitter could have already emitted the event but subscription is not yet
+  // setup
+
+
+  _react["default"].useEffect(function () {
+    if (isMounted.current && config && config.area && (0, _trackPromise.getCounter)(config.area) > 0) {
+      setInternalPromiseInProgress(true);
+      setPromiseInProgress(true);
+    }
+  }, [config]); // Internal will hold the current value
+
+
+  var _React$useState3 = _react["default"].useState(false),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      internalPromiseInProgress = _React$useState4[0],
+      setInternalPromiseInProgress = _React$useState4[1]; // Promise in progress is 'public', it can be affected by the _delay_ parameter
+  // it may not show the current state
+
+
+  var _React$useState5 = _react["default"].useState(false),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      promiseInProgress = _React$useState6[0],
+      setPromiseInProgress = _React$useState6[1]; // We need to hold a ref to latestInternal, to check the real value on
+  // callbacks (if not we would get always the same value)
+  // more info: https://overreacted.io/a-complete-guide-to-useeffect/
+
+
+  var latestInternalPromiseInProgress = _react["default"].useRef(internalPromiseInProgress);
+
+  var notifyPromiseInProgress = function notifyPromiseInProgress() {
+    !config || !config.delay || config.delay === 0 ? setPromiseInProgress(true) : setTimeout(function () {
+      // Check here ref to internalPromiseInProgress
+      if (latestInternalPromiseInProgress.current) {
+        setPromiseInProgress(true);
+      }
+    }, config.delay);
+  };
+
+  var updatePromiseTrackerStatus = function updatePromiseTrackerStatus(anyPromiseInProgress, areaAffected) {
+    if (isMounted.current && config.area === areaAffected) {
+      setInternalPromiseInProgress(anyPromiseInProgress); // Update the ref object as well, we will check it when we need to
+      // cover the _delay_ case (setTimeout)
+
+      latestInternalPromiseInProgress.current = anyPromiseInProgress;
+
+      if (!anyPromiseInProgress) {
+        setPromiseInProgress(false);
+      } else {
+        notifyPromiseInProgress();
+      }
+    }
+  };
+
+  _react["default"].useEffect(function () {
+    latestInternalPromiseInProgress.current = internalPromiseInProgress;
+
+    _trackPromise.emitter.on(_trackPromise.promiseCounterUpdateEventId, updatePromiseTrackerStatus);
+
+    return function () {
+      return _trackPromise.emitter.off(_trackPromise.promiseCounterUpdateEventId, updatePromiseTrackerStatus);
+    };
+  }, []);
+
+  return {
+    promiseInProgress: promiseInProgress
+  };
+};
+
+exports.usePromiseTracker = usePromiseTracker;
+
+/***/ }),
+
 /***/ "./node_modules/react-redux/es/components/Context.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-redux/es/components/Context.js ***!
@@ -86478,6 +87070,33 @@ var LeftNavbarOptionDept = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/LoadingIndicator.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/LoadingIndicator.js ***!
+  \*****************************************************/
+/*! exports provided: LoadingIndicator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoadingIndicator", function() { return LoadingIndicator; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_promise_tracker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-promise-tracker */ "./node_modules/react-promise-tracker/lib/index.js");
+/* harmony import */ var react_promise_tracker__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_promise_tracker__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_core_Container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Container */ "./node_modules/@material-ui/core/esm/Container/index.js");
+
+
+
+var LoadingIndicator = function LoadingIndicator(props) {
+  var _usePromiseTracker = Object(react_promise_tracker__WEBPACK_IMPORTED_MODULE_1__["usePromiseTracker"])(),
+      promiseInProgress = _usePromiseTracker.promiseInProgress;
+
+  return promiseInProgress && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hey some async call in progress ! ");
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/MainContenar.js":
 /*!*************************************************!*\
   !*** ./resources/js/components/MainContenar.js ***!
@@ -86496,6 +87115,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./home */ "./resources/js/components/home.js");
 /* harmony import */ var _Semester__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Semester */ "./resources/js/components/Semester.js");
 /* harmony import */ var _ResultList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ResultList */ "./resources/js/components/ResultList.js");
+/* harmony import */ var _LoadingIndicator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./LoadingIndicator */ "./resources/js/components/LoadingIndicator.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -86517,6 +87137,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -86552,7 +87173,7 @@ var MainContenar = /*#__PURE__*/function (_Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-container",
         id: "appRoute"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_transition_group__WEBPACK_IMPORTED_MODULE_4__["TransitionGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_transition_group__WEBPACK_IMPORTED_MODULE_4__["CSSTransition"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LoadingIndicator__WEBPACK_IMPORTED_MODULE_8__["LoadingIndicator"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_transition_group__WEBPACK_IMPORTED_MODULE_4__["TransitionGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_transition_group__WEBPACK_IMPORTED_MODULE_4__["CSSTransition"], {
         key: this.props.location.key,
         classNames: "page",
         timeout: 300
@@ -87417,10 +88038,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_EXAMS", function() { return FETCH_EXAMS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_FILTER", function() { return SET_FILTER; });
 /* harmony import */ var _ActionType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ActionType */ "./resources/js/redux/ActionType.js");
+/* harmony import */ var react_promise_tracker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-promise-tracker */ "./node_modules/react-promise-tracker/lib/index.js");
+/* harmony import */ var react_promise_tracker__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_promise_tracker__WEBPACK_IMPORTED_MODULE_1__);
+
 
 var FETCH_EXAMS = function FETCH_EXAMS(param) {
   return function (dispatch) {
-    return fetch('http://localhost:8000/api/pdf?dept=' + param.dept + '&sem=' + param.sem + '&page=' + param.page + '&type=' + param.type + '&year=' + param.year).then(function (response) {
+    return Object(react_promise_tracker__WEBPACK_IMPORTED_MODULE_1__["trackPromise"])(fetch('http://localhost:8000/api/pdf?dept=' + param.dept + '&sem=' + param.sem + '&page=' + param.page + '&type=' + param.type + '&year=' + param.year).then(function (response) {
       if (response.ok) {
         //  console.log(response)
         return response;
@@ -87445,7 +88069,7 @@ var FETCH_EXAMS = function FETCH_EXAMS(param) {
       return dispatch({
         payload: error.message
       });
-    });
+    }));
   };
 };
 var SET_FILTER = function SET_FILTER(param) {
