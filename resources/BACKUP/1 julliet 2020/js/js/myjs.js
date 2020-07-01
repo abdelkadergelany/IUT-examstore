@@ -1,12 +1,11 @@
 $('#toggleSidebar').on('click', function () {
-   // console.log('Togglesidebar');
+    console.log('Togglesidebar');
 
-$('body').toggleClass('open-sidebar');
-
+$('body').toggleClass('iconic-sidebar');
 });
 
 $('#openSidebar').on('click', function (e) {
-//console.log('opensidebar');
+console.log('opensidebar');
 
 e.stopPropagation();
 $('body').removeClass('open-search');
