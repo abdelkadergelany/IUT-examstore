@@ -6,6 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { AppendScript } from './AppendScript';
 import { Provider } from 'react-redux';
 import { ConfigureStore } from '../redux/ConfigureStore'
+import './mystyle.css';
+
 
 
 class Index extends Component {

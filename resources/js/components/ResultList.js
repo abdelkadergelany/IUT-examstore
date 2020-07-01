@@ -6,6 +6,8 @@ import { FETCH_EXAMS,SET_FILTER } from '../redux/ActionCreators';
 import RenderResult from './RenderResult';
 import Pagination from "react-js-pagination";
 import Filter from './Filter'
+import { FadeTransform } from 'react-animation-components';
+
 
 
 const mapStateToProps = state => {
@@ -50,7 +52,11 @@ class ResultList extends Component {
       //console.log(this.props.Exams.last_page)
         //this.PageRange;
         return (
-
+            <FadeTransform
+            in
+            transformProps={{
+                exitTransform: 'scale(0.5) translateY(-50%)'
+            }}>
             <Container maxWidth="md">
             <Filter />
                 <div className="section custom-list">
@@ -68,6 +74,8 @@ class ResultList extends Component {
               />
               </Container>
             </Container>
+            </FadeTransform>
+
         )
         }
     }

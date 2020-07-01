@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+
 export default class RenderResult extends Component {
     constructor(props) {
         super(props);
@@ -10,9 +11,11 @@ export default class RenderResult extends Component {
     render() {
        // console.log(this.props.exam)
         return (
+
             <div>{Array.from(this.props.exam).map((ex,index) => {
 
                 return (
+
                     <div key={ex.id}>
                         <div className="custom-list--item" >
                             <div className="text-dark custom-card--inline">
@@ -30,7 +33,7 @@ export default class RenderResult extends Component {
                                 <li >
                                     <a href="#" >
                                         <i className="la la-heart-o"></i>
-                                        <span>Favorite</span>
+                                        <span>Save</span>
                                     </a>
                                 </li>
                                 <li >
@@ -61,6 +64,8 @@ export default class RenderResult extends Component {
             }
 
             </div>
+
+
         )
     }
 }

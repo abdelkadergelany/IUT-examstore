@@ -6,7 +6,7 @@ export default class LeftNavbarFooter extends Component {
             <div className="sidebar-footer">
             <a href="add-music.html" className="btn btn-block btn-danger btn-air btn-bold">
                 <i className="ion-md-musical-note"></i>
-                <span>Add Music</span>
+                <span>Submit paper</span>
             </a>
         </div>
         )
