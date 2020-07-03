@@ -7,6 +7,9 @@ import Home from './home'
 import Semester from './Semester'
 import ResultList from './ResultList'
 import {LoadingIndicator} from './LoadingIndicator'
+import Login from './Login';
+import Register from './Register';
+
 
 
 
@@ -35,6 +38,8 @@ import {LoadingIndicator} from './LoadingIndicator'
                     <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
                     <Switch >
                         <Route exact path='/home' component={Home} />
+                        <Route exact path='/login' component={Login} />
+                        <Route exact path='/register' component={Register} />
                         <Route path="/department/:dept/semester/:sem" render={({match}) => (<ResultList sem={match.params.sem}  dept={match.params.dept} />)}/>
                         <Route path="/department/:dept" render={({match}) => (<Semester dept={match.params.dept} />)}/>
                          <Redirect to="/home" />

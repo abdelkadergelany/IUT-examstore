@@ -9,14 +9,15 @@ export default class RenderResult extends Component {
 
 
     render() {
-       // console.log(this.props.exam)
+        //console.log(this.props.exam)
+          if(!this.props.fetching){
         return (
 
             <div>{Array.from(this.props.exam).map((ex,index) => {
 
                 return (
 
-                    <div key={ex.id}>
+                    <div key={index}>
                         <div className="custom-list--item" >
                             <div className="text-dark custom-card--inline">
                                 <div className="custom-card--inline-img">
@@ -38,7 +39,7 @@ export default class RenderResult extends Component {
                                 </li>
                                 <li >
                                     <a href="#" >
-                                        <i className="la la-heart-o"></i>
+                                    <i className="la  la-share-alt-square"></i>
                                         <span>share</span>
                                     </a>
                                 </li>
@@ -54,18 +55,15 @@ export default class RenderResult extends Component {
                         </div>
                         <hr />
                     </div>
-
                 )
-
-
-
             })
-
             }
-
             </div>
-
-
         )
+    }else{
+        return (
+            <p></p>
+        )
+    }
     }
 }

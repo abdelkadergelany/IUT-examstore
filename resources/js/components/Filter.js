@@ -6,7 +6,7 @@ export default class Filter extends Component {
     render() {
         return (
             <div className="row align-items-end">
-                <span className="col-4 font-weight-bold">5,012 Results</span>
+                <span className="col-4 font-weight-bold">{this.props.total} Results Found</span>
                 <div className="col-4 ml-auto">
 
                     <FilterByType />

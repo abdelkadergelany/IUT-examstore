@@ -28,7 +28,8 @@ class ResultList extends Component {
         super(props);
 
         this.state = {
-            activePage: 1
+            activePage: 1,
+            fetching: false
         };
     }
 
@@ -40,17 +41,17 @@ class ResultList extends Component {
 
 
     handlePageChange(pageNumber) {
-       // console.log(`active page is ${pageNumber}`);
-     // console.log(this.props.Exams)
+
      this.props.FETCH_EXAMS({ dept: this.props.dept, sem: this.props.sem,type:this.props.Filters.payload.type,year:this.props.Filters.payload.year, page:pageNumber  });
         this.setState({activePage: pageNumber});
 
+
       }
     render() {
+       // console.log(this.props.Exams)
 
        { if (this.props.Exams.data!=null){
-      //console.log(this.props.Exams.last_page)
-        //this.PageRange;
+
         return (
             <FadeTransform
             in
@@ -58,9 +59,11 @@ class ResultList extends Component {
                 exitTransform: 'scale(0.5) translateY(-50%)'
             }}>
             <Container maxWidth="md">
-            <Filter />
+            <Filter total={this.props.Exams.total} />
                 <div className="section custom-list">
-                    <RenderResult exam={this.props.Exams.data} />
+
+                    <RenderResult fetching={this.state.fetching} exam={this.props.Exams.data} />
+
                 </div>
                 <Container maxWidth="md">
                 <Pagination
@@ -71,6 +74,7 @@ class ResultList extends Component {
                 onChange={this.handlePageChange.bind(this)}
                 itemClass="page-item"
                 linkClass="page-link"
+
               />
               </Container>
             </Container>

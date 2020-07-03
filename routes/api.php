@@ -19,3 +19,14 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/pdf', 'PdfController@getPdf')->name('home');
+
+
+Route::group([
+    'prefix'=>'user',
+    'namespace'=>'User',
+],
+function(){
+    Route::post('register','AuthController@register');
+    Route::post('login','AuthController@login');
+}
+);
