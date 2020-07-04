@@ -1,47 +1,31 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom'
-import { signUp } from '../redux/AuthAction';
+import Icon from '@material-ui/core/Icon';
 
-
-const mapStateToProps = state => {
-    return {
-        Auth: state.Auth,
-    }
-}
-
-const mapDispatchToProps = dispatch => ({
-    signUp: (param) => dispatch(signUp(param))
-});
-
- class Register extends Component {
+export default class Register extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            activePage: 1,
             name:'',
             email:'',
             password:'',
             passwordconfirm:''
 
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-
-
     }
     handleSubmit (e) {
        e.preventDefault();
-       this.props.signUp(this.state);
-      // console.log(this.state);
+       console.log(this.state)
     }
     handleChange(e){
       this.setState({[ e.target.id]:e.target.value})
-       // console.log(e)
+        console.log(e)
      }
 
     render() {
@@ -55,22 +39,22 @@ const mapDispatchToProps = dispatch => ({
                 <form style={root} validate='true'  onSubmit={this.handleSubmit} autoComplete="off">
 
                     <FormControl fullWidth style={margin} variant="outlined">
-                        <TextField onChange={this.handleChange} type='text' required={true} id="name" label="Name" variant="outlined" InputProps={{ error: false }} helperText="" />
+                        <TextField type='text' required={true} id="name" label="Name" variant="outlined" InputProps={{ error: false }} helperText="" />
                     </FormControl>
                     <br />
                     <FormControl fullWidth style={margin} variant="outlined">
-                        <TextField  onChange={this.handleChange} type='email' required={true} id="email" label="email" variant="outlined" />
+                        <TextField autoComplete="off" type='email' required={true} id="email" label="email" variant="outlined" />
                     </FormControl>
                     <br />
 
                     <FormControl fullWidth style={margin} variant="outlined">
-                        <TextField onChange={this.handleChange} type='password' required={true} id="password" label="password" variant="outlined" />
+                        <TextField type='password' required={true} id="password" label="password" variant="outlined" />
                     </FormControl>
 
                     <br />
 
                     <FormControl fullWidth style={margin} variant="outlined">
-                        <TextField onChange={this.handleChange} type='password' required={true} id="passwordconfirm" label="Confirm password" variant="outlined" />
+                        <TextField type='password' required={true} id="passwordconfirm" label="Confirm password" variant="outlined" />
                     </FormControl><br />
 
                     <FormControl fullWidth style={margin} variant="outlined">
@@ -90,5 +74,3 @@ const mapDispatchToProps = dispatch => ({
         )
     }
 }
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register));

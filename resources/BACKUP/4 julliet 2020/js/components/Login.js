@@ -4,40 +4,19 @@ import FormControl from '@material-ui/core/FormControl';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom'
-import { UserLogin } from '../redux/AuthAction';
+import Icon from '@material-ui/core/Icon';
 
-
-const mapStateToProps = state => {
-    return {
-        Auth: state.Auth,
-    }
-}
-
-const mapDispatchToProps = dispatch => ({
-    UserLogin: (param) => dispatch(UserLogin(param))
-});
- class Login extends Component {
+export default class Login extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            email:'',
-            password:'',
-        }
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+            activePage: 1,
+            fetching: false
+        };
     }
 
-    handleSubmit (e) {
-        e.preventDefault();
-        this.props.UserLogin(this.state);
-        console.log(this.state);
-     }
-     handleChange(e){
-       this.setState({[ e.target.id]:e.target.value})
-         //console.log(e)
-      }
+
     render() {
         const root = { display: 'flex', flexWrap: 'wrap' }
         const margin = { margin: '5px' }
@@ -46,15 +25,15 @@ const mapDispatchToProps = dispatch => ({
         return (
             <Container maxWidth="md">
                 <h1 className="text-center">Login form</h1>
-                <form style={root} validate='true' onSubmit={this.handleSubmit}>
+                <form style={root} validate='true' >
 
                     <FormControl fullWidth style={margin} variant="outlined">
-                        <TextField onChange={this.handleChange} type="email" required={true} id="email" label="email" variant="outlined" />
+                        <TextField type="email" required={true} id="email" label="email" variant="outlined" />
                     </FormControl>
                     <br />
 
                     <FormControl fullWidth style={margin} variant="outlined">
-                        <TextField onChange={this.handleChange} type='password' required={true} id="password" label="password" variant="outlined" />
+                        <TextField type='password' required={true} id="password" label="password" variant="outlined" />
                     </FormControl>
 
                     <br />
@@ -76,5 +55,3 @@ const mapDispatchToProps = dispatch => ({
         )
     }
 }
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
