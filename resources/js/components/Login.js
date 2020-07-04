@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom'
+import {withRouter,Redirect} from 'react-router-dom'
 import { UserLogin } from '../redux/AuthAction';
 
 
@@ -32,7 +32,7 @@ const mapDispatchToProps = dispatch => ({
     handleSubmit (e) {
         e.preventDefault();
         this.props.UserLogin(this.state);
-        console.log(this.state);
+      //  console.log(this.state);
      }
      handleChange(e){
        this.setState({[ e.target.id]:e.target.value})
@@ -42,7 +42,11 @@ const mapDispatchToProps = dispatch => ({
         const root = { display: 'flex', flexWrap: 'wrap' }
         const margin = { margin: '5px' }
         const button = { margin: '1px' }
-
+        if (this.props.Auth.authResponse ==="loged") {
+            return (
+              <Redirect to='/home'/>
+            )
+          }
         return (
             <Container maxWidth="md">
                 <h1 className="text-center">Login form</h1>

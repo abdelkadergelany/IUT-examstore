@@ -26,7 +26,8 @@ const mapDispatchToProps = dispatch => ({
             name:'',
             email:'',
             password:'',
-            passwordconfirm:''
+            passwordconfirm:'',
+
 
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -48,7 +49,11 @@ const mapDispatchToProps = dispatch => ({
         const root = { display: 'flex', flexWrap: 'wrap' }
         const margin = { margin: '5px' }
         const button = { margin: '1px' }
-
+        if (this.props.Auth.authResponse ==="redirecting you to dashboard") {
+            return (
+              <Redirect to='/'/>
+            )
+          }
         return (
             <Container maxWidth="md">
                 <h1 className="text-center">Registration form</h1>

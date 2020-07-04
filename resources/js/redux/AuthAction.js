@@ -3,7 +3,7 @@ import {LoginUser} from './services/AuthService'
 import { createBrowserHistory } from 'history'
 const browserHistory = createBrowserHistory();
 export const signUp = (credentials) =>{
-    console.log(credentials);
+ //   console.log(credentials);
     return (dispatch)=>{
         dispatch({type:'RESTART_AUTH_RESPONSE'});
         dispatch({type:'LOADING'});
@@ -12,7 +12,7 @@ export const signUp = (credentials) =>{
         }
 
         SignUpService(credentials).then((res)=>{
-            console.log(res);
+           // console.log(res);
             if(res.token!==null){
                 localStorage.setItem("user",'Bearer '+res.token);
                 dispatch({type:'SIGNUP_SUCCESS'})
@@ -33,6 +33,15 @@ export const signUp = (credentials) =>{
 
 }
 
+export const UserLogout = () =>{
+    return (dispatch)=>{
+        localStorage.removeItem("user");
+       dispatch({type:'USER_LOGOUT'});
+
+
+
+    }
+   }
 
 export const UserLogin = (credentials,history) =>{
 
@@ -44,7 +53,7 @@ export const UserLogin = (credentials,history) =>{
         return dispatch({type: 'SHORT_PASSWORD'})
      }
      LoginUser(credentials,history).then((res)=>{
-         console.log(res);
+        // console.log(res);
          if(res.success==true){
             localStorage.setItem("user",'Bearer '+res.token);
             dispatch({type:'LOGIN_SUCCESS'})

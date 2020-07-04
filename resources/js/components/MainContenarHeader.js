@@ -1,14 +1,36 @@
 import React, { Component } from 'react'
 import Profile from './Profile'
 import SearchIcon from '@material-ui/icons/Search';
-import { NavLink } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom'
+import AuthButton from './AuthButton';
 
+const mapStateToProps = state => {
+    return {
+        Auth: state.Auth,
+    }
+}
 
+ class MainContenarHeader extends Component {
+    constructor(props) {
+        super(props);
 
-export default class MainContenarHeader extends Component {
+        this.state = {
+            name:''
+
+        }
+
+    }
     render() {
-        const margin ={margin:'1px',pading:'1px'}
+
+        function RenderAuthButton(props){
+          if(props.isLoged ==="loged"){
+            return <Profile/>
+          } else{
+            return <AuthButton/>
+          }
+        }
+        console.log(this.props);
         return (
             <header id="header" className="bg-primary">
 
@@ -25,15 +47,7 @@ export default class MainContenarHeader extends Component {
                         <input type="text" placeholder="Search..." id="searchInput" className="form-control" />
 
                     </form>
-
-                    <NavLink className="text-white"  to="/login" >
-                    <Button style={margin} variant="contained" color='primary'>Login</Button>
-                    </NavLink>
-
-                    <NavLink className="text-white"  to="/register" >
-                    <Button style={margin} variant="contained" color='secondary'>Register</Button>
-
-                    </NavLink>
+                         <RenderAuthButton isLoged={this.props.Auth.authResponse}/>
 
                 </div>
 
@@ -41,3 +55,4 @@ export default class MainContenarHeader extends Component {
         )
     }
 }
+export default withRouter(connect(mapStateToProps)(MainContenarHeader));
