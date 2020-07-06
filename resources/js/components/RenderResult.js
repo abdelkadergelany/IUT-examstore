@@ -1,12 +1,26 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
+import { saveFavorite } from '../redux/AuthAction';
 
 
-export default class RenderResult extends Component {
+const mapDispatchToProps = dispatch => ({
+    saveFavorite: (param) => dispatch(saveFavorite(param))
+});
+
+class RenderResult extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+
+        };
+        this.AddFavorite = this.AddFavorite.bind(this);
 
     }
-
+     AddFavorite(e){
+    //   console.log(e);
+       this.props.saveFavorite({id:e});
+     }
 
     render() {
         //console.log(this.props.exam)
@@ -34,7 +48,7 @@ export default class RenderResult extends Component {
                                 <li >
                                     <a href="#" >
                                         <i className="la la-heart-o"></i>
-                                        <span>Save</span>
+                                        <span onClick={() => this.AddFavorite(ex.id)}>Save</span>
                                     </a>
                                 </li>
                                 <li >
@@ -67,3 +81,4 @@ export default class RenderResult extends Component {
     }
     }
 }
+export default withRouter(connect(null, mapDispatchToProps)(RenderResult));

@@ -3,6 +3,7 @@ class HttpService{
 
     postData = async(item ,added_url) =>{
     const token = await localStorage.getItem('user');
+    //console.log(token);
     let requestOptions = {
         method:'POST',
         headers:{'Authorization':token,
@@ -27,7 +28,7 @@ class HttpService{
              'Content-type':'application/json',
         }
         }
-
+         //  console.log(this.url+"/"+added_url)
         return fetch(this.url+"/"+added_url, requestOptions).then(
             response=>response.json());
     }

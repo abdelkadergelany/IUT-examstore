@@ -1,4 +1,5 @@
 import {SignUpService } from './services/AuthService'
+import {saveFavoriteService } from './services/AuthService'
 import {LoginUser} from './services/AuthService'
 import { createBrowserHistory } from 'history'
 const browserHistory = createBrowserHistory();
@@ -16,9 +17,8 @@ export const signUp = (credentials) =>{
             if(res.token!==null){
                 localStorage.setItem("user",'Bearer '+res.token);
                 dispatch({type:'SIGNUP_SUCCESS'})
-                setTimeout(() => {
-                    history.push("/home");
-                }, 3000);
+                browserHistory.push("/");
+
 
             }else{
                 dispatch({type:'SIGNUP_ERROR',res})
@@ -73,7 +73,32 @@ export const UserLogin = (credentials,history) =>{
  }
 }
 
+export const saveFavorite = (credentials) =>{
+     // console.log(credentials);
+       return (dispatch)=>{
+           saveFavoriteService(credentials).then((res)=>{
+               //console.log('jus');
+               if(res.success==true){
+                  // localStorage.setItem("user",'Bearer '+res.token);
+                   dispatch({type:'SAVE_FAVORITE_SUCCESS'})
 
+               }else{
+                   if(res.message =='saving error'){
+                       console.log("am here")
+                    dispatch({type:'LOGIN_FAVORITE_ERROR',res})
+
+                   }
+                  //  dispatch({type:'SAVE_FAVORITE_ERROR',res})
+               }
+           },
+           error=>{
+               dispatch({type:'CODE_ERROR',error});
+           }
+
+           )
+       }
+
+   }
 export const resetAuthResponsePerComponent = (dispatch) =>
 {
   return (dispatch) =>{

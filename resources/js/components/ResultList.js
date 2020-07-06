@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Container from '@material-ui/core/Container';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom';
 import { FETCH_EXAMS,SET_FILTER } from '../redux/ActionCreators';
 import RenderResult from './RenderResult';
 import Pagination from "react-js-pagination";

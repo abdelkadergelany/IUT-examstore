@@ -4,7 +4,7 @@ export default class LeftNavbarHeader extends Component {
     render() {
         return (
             <div className="sidebar-header d-flex align-items-center">
-            <a href="http://kri8thm.kiraninfosoft.com/listen/theme/index.html" className="brand">
+            <a href="/" className="brand">
                 <img src="/images/logo/logo-left.jpg" alt="examstore" />
             </a>
 

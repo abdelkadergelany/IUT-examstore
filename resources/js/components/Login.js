@@ -7,6 +7,9 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import {withRouter,Redirect} from 'react-router-dom'
 import { UserLogin } from '../redux/AuthAction';
+import AlertComponent from './AlertComponent';
+
+
 
 
 const mapStateToProps = state => {
@@ -24,6 +27,7 @@ const mapDispatchToProps = dispatch => ({
         this.state = {
             email:'',
             password:'',
+            show: true,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -47,9 +51,12 @@ const mapDispatchToProps = dispatch => ({
               <Redirect to='/home'/>
             )
           }
+
         return (
             <Container maxWidth="md">
                 <h1 className="text-center">Login form</h1>
+                {this.props.Auth.authResponse=="invalid email or password" && <div><AlertComponent message={this.props.Auth.authResponse} /></div>}
+                <br/>
                 <form style={root} validate='true' onSubmit={this.handleSubmit}>
 
                     <FormControl fullWidth style={margin} variant="outlined">

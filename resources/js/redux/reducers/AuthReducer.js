@@ -17,7 +17,7 @@ const AuthReducer = (state = initState, action) => {
                 authResponse: 'loading...'
             }
         case 'SHORT_PASSWORD':
-           // console.log(action);
+            // console.log(action);
             return {
                 ...state,
                 authResponse: 'password is too short'
@@ -31,35 +31,42 @@ const AuthReducer = (state = initState, action) => {
             }
 
         case 'SIGNUP_ERROR':
-          //  console.log(action)
+            //  console.log(action)
             return {
                 ...state,
                 authResponse: action.res.message,
             }
 
         case 'CODE_ERROR':
-           // console.log(action)
+            // console.log(action)
             return {
                 ...state,
                 authResponse: 'there seems to be a problem please try again later',
             }
         case 'LOGIN_SUCCESS':
-           // console.log(action)
+            // console.log(action)
             return {
                 ...state,
                 authResponse: 'loged',
             }
         case 'LOGIN_ERROR':
-           // console.log(action)
+            // console.log(action)
             return {
                 ...state,
                 authResponse: action.res.message,
             }
-            case 'USER_LOGOUT':
-                //console.log(action)
+        case 'USER_LOGOUT':
 
-                 return  { authResponse: 'Loged out successfully'}
+            return { authResponse: 'Loged out successfully' }
+        case 'SAVE_FAVORITE_SUCCESS':
 
+            return { ...state, favorite: 'favorite saved' }
+        case 'LOGIN_FAVORITE_ERROR':
+
+            return { ...state, favorite: 'login to save to your favorite' }
+        case 'SAVE_FAVORITE_ERROR':
+
+            return { ...state, favorite: 'error while saving to favorite' }
 
         default:
             return state
