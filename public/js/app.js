@@ -102947,10 +102947,22 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    Auth: state.Auth
+  };
+};
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     saveFavorite: function saveFavorite(param) {
       return dispatch(Object(_redux_AuthAction__WEBPACK_IMPORTED_MODULE_3__["saveFavorite"])(param));
+    },
+    deleteFavorite: function deleteFavorite(param) {
+      return dispatch(Object(_redux_AuthAction__WEBPACK_IMPORTED_MODULE_3__["deleteFavorite"])(param));
+    },
+    getFavorite: function getFavorite(param) {
+      return dispatch(Object(_redux_AuthAction__WEBPACK_IMPORTED_MODULE_3__["getFavorite"])(param));
     }
   };
 };
@@ -102967,10 +102979,28 @@ var RenderResult = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.AddFavorite = _this.AddFavorite.bind(_assertThisInitialized(_this));
+    _this.handelDelete = _this.handelDelete.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(RenderResult, [{
+    key: "handelDelete",
+    value: function handelDelete(e) {
+      var confirmDialog = window.confirm("do you really want to delete?");
+
+      if (confirmDialog == true) {
+        this.props.deleteFavorite({
+          pdf: e.pdf,
+          user: e.user
+        });
+        this.props.getFavorite({
+          page: this.props.Auth.favoriteList.data.current_page
+        });
+      } else {
+        return false;
+      }
+    }
+  }, {
     key: "AddFavorite",
     value: function AddFavorite(e) {
       //   console.log(e);
@@ -102983,8 +103013,7 @@ var RenderResult = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log(this.props.history.location.pathname);
-
+      // console.log(this.props.history.location.pathname)
       if (!this.props.fetching) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, Array.from(this.props.exam).map(function (ex, index) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -103008,8 +103037,15 @@ var RenderResult = /*#__PURE__*/function (_Component) {
           }, ex.program, " "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
             className: "custom-card--labels d-flex ml-auto"
           }, _this2.props.history.location.pathname == '/favorite' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-            "class": "las la-trash-alt"
-          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Delete"))), _this2.props.history.location.pathname != '/favorite' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            className: "las la-trash-alt"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            onClick: function onClick() {
+              return _this2.handelDelete({
+                user: ex.user,
+                pdf: ex.pdf
+              });
+            }
+          }, "Delete"))), _this2.props.history.location.pathname != '/favorite' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
             className: " la la-heart-o"
           }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
             onClick: function onClick() {
@@ -103034,7 +103070,7 @@ var RenderResult = /*#__PURE__*/function (_Component) {
   return RenderResult;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(RenderResult)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(RenderResult)));
 
 /***/ }),
 
@@ -103758,7 +103794,7 @@ var SET_FILTER = 'SET_FILTER';
 /*!******************************************!*\
   !*** ./resources/js/redux/AuthAction.js ***!
   \******************************************/
-/*! exports provided: signUp, UserLogout, UserLogin, closeSnake, getFavorite, saveFavorite, resetAuthResponsePerComponent */
+/*! exports provided: signUp, UserLogout, UserLogin, closeSnake, deleteFavorite, getFavorite, saveFavorite, resetAuthResponsePerComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -103767,6 +103803,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserLogout", function() { return UserLogout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserLogin", function() { return UserLogin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeSnake", function() { return closeSnake; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteFavorite", function() { return deleteFavorite; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFavorite", function() { return getFavorite; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveFavorite", function() { return saveFavorite; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetAuthResponsePerComponent", function() { return resetAuthResponsePerComponent; });
@@ -103859,8 +103896,7 @@ var UserLogin = function UserLogin(credentials, history) {
       dispatch({
         type: 'CODE_ERROR',
         error: error
-      });
-      console.log(error);
+      }); //   console.log(error)
     });
   };
 };
@@ -103871,11 +103907,34 @@ var closeSnake = function closeSnake(p) {
     });
   };
 };
+var deleteFavorite = function deleteFavorite(credentials) {
+  return function (dispatch) {
+    return Object(react_promise_tracker__WEBPACK_IMPORTED_MODULE_2__["trackPromise"])(Object(_services_AuthService__WEBPACK_IMPORTED_MODULE_0__["deleteFavoriteService"])(credentials).then(function (res) {
+      if (res.success == true) {
+        // console.log(res)
+        dispatch({
+          type: 'DELETE_FAVORITE_SUCCESS',
+          res: res
+        });
+      } else {
+        dispatch({
+          type: 'DELETE_FAVORITE_ERROR',
+          res: res
+        });
+      }
+    }, function (error) {
+      dispatch({
+        type: 'CODE_ERROR',
+        error: error
+      });
+    }));
+  };
+};
 var getFavorite = function getFavorite(credentials) {
   return function (dispatch) {
     return Object(react_promise_tracker__WEBPACK_IMPORTED_MODULE_2__["trackPromise"])(Object(_services_AuthService__WEBPACK_IMPORTED_MODULE_0__["getFavoriteService"])(credentials).then(function (res) {
       if (res.success == true) {
-        console.log(res);
+        // console.log(res)
         dispatch({
           type: 'GET_FAVORITE_SUCCESS',
           res: res
@@ -104088,10 +104147,35 @@ var AuthReducer = function AuthReducer() {
         favoriteList: action.res
       });
 
+    case 'GET_FAVORITE_ERROR':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        snakbar: true,
+        snakbarMessage: 'Login to view your favorite',
+        favoriteList: null
+      });
+
+    case 'DELETE_FAVORITE_SUCCESS':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        snakbar: true,
+        snakbarMessage: 'favorite deleted'
+      });
+
+    case 'DELETE_FAVORITE_ERROR':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        snakbar: true,
+        snakbarMessage: 'sorry error deleting favorite'
+      });
+
     case 'CLOSE_SNAKE':
       return _objectSpread(_objectSpread({}, state), {}, {
         snakbar: false,
         snakbarMessage: ''
+      });
+
+    case 'CODE_ERROR':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        snakbar: true,
+        snakbarMessage: 'Sorry an error occured'
       });
 
     default:
@@ -104236,7 +104320,7 @@ var User = function User() {
 /*!****************************************************!*\
   !*** ./resources/js/redux/services/AuthService.js ***!
   \****************************************************/
-/*! exports provided: SignUpService, saveFavoriteService, getFavoriteService, LoginUser */
+/*! exports provided: SignUpService, saveFavoriteService, getFavoriteService, deleteFavoriteService, LoginUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -104244,15 +104328,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignUpService", function() { return SignUpService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveFavoriteService", function() { return saveFavoriteService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFavoriteService", function() { return getFavoriteService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteFavoriteService", function() { return deleteFavoriteService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginUser", function() { return LoginUser; });
 /* harmony import */ var _HttpService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HttpService */ "./resources/js/redux/services/HttpService.js");
+/* harmony import */ var _AuthAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../AuthAction */ "./resources/js/redux/AuthAction.js");
+
 
 var SignUpService = function SignUpService(credentials) {
-  var http = new _HttpService__WEBPACK_IMPORTED_MODULE_0__["default"](); // console.log(HttpService);
-
+  var http = new _HttpService__WEBPACK_IMPORTED_MODULE_0__["default"]();
   var signUpUrl = "user/register";
   return http.postData(credentials, signUpUrl).then(function (data) {
-    //  console.log(JSON.stringify(data));
     return data;
   })["catch"](function (error) {
     console.log(error);
@@ -104260,11 +104345,9 @@ var SignUpService = function SignUpService(credentials) {
   });
 };
 var saveFavoriteService = function saveFavoriteService(credentials) {
-  var http = new _HttpService__WEBPACK_IMPORTED_MODULE_0__["default"](); // console.log(HttpService);
-
+  var http = new _HttpService__WEBPACK_IMPORTED_MODULE_0__["default"]();
   var signUpUrl = "user/save-favorite";
   return http.postData(credentials, signUpUrl).then(function (data) {
-    // console.log(JSON.stringify(data));
     console.log(JSON.stringify(data));
     return data;
   })["catch"](function (error) {
@@ -104278,19 +104361,29 @@ var getFavoriteService = function getFavoriteService(credentials) {
   return http.getData(signUpUrl).then(function (data) {
     return data;
   })["catch"](function (error) {
-    console.log(error);
+    //  console.log(error)
+    return error;
+  });
+};
+var deleteFavoriteService = function deleteFavoriteService(credentials) {
+  var http = new _HttpService__WEBPACK_IMPORTED_MODULE_0__["default"]();
+  var signUpUrl = "user/delete-favorite?id=" + credentials.user + '&pdf=' + credentials.pdf; //console.log(signUpUrl);
+
+  return http.getData(signUpUrl).then(function (data) {
+    return data;
+  })["catch"](function (error) {
+    //   console.log(error)
     return error;
   });
 };
 var LoginUser = function LoginUser(credentials, propsHistory) {
-  var http = new _HttpService__WEBPACK_IMPORTED_MODULE_0__["default"](); // console.log(HttpService);
-
+  var http = new _HttpService__WEBPACK_IMPORTED_MODULE_0__["default"]();
   var signUpUrl = "user/login";
   return http.postData(credentials, signUpUrl).then(function (data) {
-    console.log(JSON.stringify(data));
+    // console.log(JSON.stringify(data));
     return data;
   })["catch"](function (error) {
-    console.log(error);
+    // console.log(error)
     return error;
   });
 };

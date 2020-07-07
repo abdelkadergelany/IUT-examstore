@@ -21,7 +21,7 @@ import ResultList from './ResultList'
         //<Route  path='/department/:dept/semester/:value' component={ResultList} />
 
         //var id = this.props.match.params.id
-        console.log(this.props)
+       // console.log(this.props)
         return (
             <main id="pageWrapper">
                 <MainContenarHeader />

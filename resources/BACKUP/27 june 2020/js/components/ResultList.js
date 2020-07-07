@@ -22,8 +22,8 @@ const mapStateToProps = state => {
         this.props.FETCH_EXAMS();
       }
     render() {
-        console.log(this.props.dept)
-        console.log(this.props.sem)
+       // console.log(this.props.dept)
+       // console.log(this.props.sem)
 
 
        // console.log(this.props.Exams);

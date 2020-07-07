@@ -25,6 +25,23 @@ class AuthController extends Controller
     {
         $this->user = new User;
     }
+    public function  deletefavorite(Request $request)
+    {
+        try{
+            $fav = Favorite::where('user',$request->id)->where('pdf',$request->pdf)->first();
+            $fav->delete();
+            return response()->json([
+                "success" => true,
+                "message" => 'deleted successfully',
+            ], 400);
+        }catch(\Exception $e){
+            return response()->json([
+                "success" => false,
+                "message" => 'error',
+            ], 400);
+        }
+
+    }
     public function getfavorite(Request $request)
     {
         try{

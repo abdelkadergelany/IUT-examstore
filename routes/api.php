@@ -30,6 +30,8 @@ function(){
     Route::post('login','AuthController@login');
     Route::post('save-favorite','AuthController@savefavorite');
     Route::get('get-favorite','AuthController@getfavorite');
+    Route::get('delete-favorite','AuthController@deletefavorite');
+
 
 }
 );

@@ -67,9 +67,21 @@ const AuthReducer = (state = initState, action) => {
         case 'GET_FAVORITE_SUCCESS':
 
             return { ...state, snakbar: false, snakbarMessage: '',favoriteList:action.res }
+            case 'GET_FAVORITE_ERROR':
+
+            return { ...state, snakbar: true, snakbarMessage: 'Login to view your favorite',favoriteList:null }
+            case 'DELETE_FAVORITE_SUCCESS':
+
+            return { ...state, snakbar: true, snakbarMessage: 'favorite deleted'}
+            case 'DELETE_FAVORITE_ERROR':
+
+            return { ...state, snakbar: true, snakbarMessage: 'sorry error deleting favorite'}
         case 'CLOSE_SNAKE':
 
             return { ...state, snakbar: false, snakbarMessage: '' }
+            case 'CODE_ERROR':
+
+            return { ...state, snakbar: true, snakbarMessage: 'Sorry an error occured' }
 
         default:
             return state

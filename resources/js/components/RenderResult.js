@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import { saveFavorite } from '../redux/AuthAction';
+import { saveFavorite,deleteFavorite,getFavorite } from '../redux/AuthAction';
 
+const mapStateToProps = state => {
+    return {
+        Auth: state.Auth
 
+    }
+}
 const mapDispatchToProps = dispatch => ({
-    saveFavorite: (param) => dispatch(saveFavorite(param))
+    saveFavorite: (param) => dispatch(saveFavorite(param)),
+    deleteFavorite:(param) => dispatch(deleteFavorite(param)),
+    getFavorite: (param) => dispatch(getFavorite(param)),
+
+
 });
 
 class RenderResult extends Component {
@@ -13,6 +22,20 @@ class RenderResult extends Component {
         super(props);
 
         this.AddFavorite = this.AddFavorite.bind(this);
+        this.handelDelete = this.handelDelete.bind(this);
+
+
+    }
+    handelDelete(e){
+        const confirmDialog = window.confirm("do you really want to delete?");
+if(confirmDialog==true){
+    this.props.deleteFavorite({pdf:e.pdf,user:e.user});
+    this.props.getFavorite({page:this.props.Auth.favoriteList.data.current_page});
+}
+else{
+    return false;
+}
+
 
     }
      AddFavorite(e){
@@ -21,7 +44,7 @@ class RenderResult extends Component {
      }
 
     render() {
-        console.log(this.props.history.location.pathname)
+       // console.log(this.props.history.location.pathname)
           if(!this.props.fetching){
         return (
 
@@ -44,10 +67,10 @@ class RenderResult extends Component {
                             <ul className="custom-card--labels d-flex ml-auto">
 
                             {  this.props.history.location.pathname=='/favorite' &&
-                            <li >
+                            <li>
                               <span>
-                              <i class="las la-trash-alt"></i>
-                                  <span >Delete</span>
+                              <i className="las la-trash-alt"></i>
+                                  <span onClick={() => this.handelDelete({user:ex.user,pdf:ex.pdf})} >Delete</span>
                               </span>
                           </li>
                       }
@@ -90,4 +113,4 @@ class RenderResult extends Component {
     }
     }
 }
-export default withRouter(connect(null, mapDispatchToProps)(RenderResult));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RenderResult));
