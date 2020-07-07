@@ -9,6 +9,7 @@ import ResultList from './ResultList'
 import {LoadingIndicator} from './LoadingIndicator'
 import Login from './Login';
 import Register from './Register';
+import Favorite from './Favorite';
 
 
 
@@ -40,9 +41,10 @@ import Register from './Register';
                         <Route exact path='/home' component={Home} />
                         <Route exact path='/login' component={Login} />
                         <Route exact path='/register' component={Register} />
+                        <Route exact path='/favorite' component={Favorite} />
                         <Route path="/department/:dept/semester/:sem" render={({match}) => (<ResultList sem={match.params.sem}  dept={match.params.dept} />)}/>
                         <Route path="/department/:dept" render={({match}) => (<Semester dept={match.params.dept} />)}/>
-                         <Redirect to="/home" />
+                        <Redirect to="/home" />
 
                     </Switch>
 

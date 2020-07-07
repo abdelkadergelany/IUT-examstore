@@ -29,6 +29,7 @@ function(){
     Route::post('register','AuthController@register');
     Route::post('login','AuthController@login');
     Route::post('save-favorite','AuthController@savefavorite');
+    Route::get('get-favorite','AuthController@getfavorite');
 
 }
 );

@@ -1,7 +1,9 @@
 import {SignUpService } from './services/AuthService'
-import {saveFavoriteService } from './services/AuthService'
+import {saveFavoriteService,getFavoriteService } from './services/AuthService'
 import {LoginUser} from './services/AuthService'
 import { createBrowserHistory } from 'history'
+import { trackPromise } from 'react-promise-tracker';
+
 const browserHistory = createBrowserHistory();
 export const signUp = (credentials) =>{
  //   console.log(credentials);
@@ -72,7 +74,33 @@ export const UserLogin = (credentials,history) =>{
      )
  }
 }
+export const closeSnake = (p) =>{
+   return (dispatch) => dispatch({type:'CLOSE_SNAKE'})
+}
+export const getFavorite = (credentials) =>{
+      return (dispatch)=>{
 
+        return trackPromise(
+          getFavoriteService(credentials).then((res)=>{
+              if(res.success==true){
+                console.log(res)
+                  dispatch({type:'GET_FAVORITE_SUCCESS',res})
+
+              }else{
+                   dispatch({type:'GET_FAVORITE_ERROR',res})
+
+              }
+          },
+          error=>{
+              dispatch({type:'CODE_ERROR',error});
+          }
+
+          )
+
+          );
+      }
+
+  }
 export const saveFavorite = (credentials) =>{
      // console.log(credentials);
        return (dispatch)=>{
@@ -84,11 +112,13 @@ export const saveFavorite = (credentials) =>{
 
                }else{
                    if(res.message =='saving error'){
-                       console.log("am here")
+                      // console.log("am here")
                     dispatch({type:'LOGIN_FAVORITE_ERROR',res})
 
+                   }else{
+                   dispatch({type:'SAVE_FAVORITE_ERROR',res})
+
                    }
-                  //  dispatch({type:'SAVE_FAVORITE_ERROR',res})
                }
            },
            error=>{

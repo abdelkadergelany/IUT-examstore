@@ -28,7 +28,7 @@ class HttpService{
              'Content-type':'application/json',
         }
         }
-         //  console.log(this.url+"/"+added_url)
+          // console.log(this.url+"/"+added_url)
         return fetch(this.url+"/"+added_url, requestOptions).then(
             response=>response.json());
     }

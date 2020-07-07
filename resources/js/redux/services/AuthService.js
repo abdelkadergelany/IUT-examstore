@@ -2,38 +2,56 @@ import HttpService from './HttpService';
 
 
 
-export const SignUpService = (credentials) =>{
+export const SignUpService = (credentials) => {
     const http = new HttpService();
     // console.log(HttpService);
     let signUpUrl = "user/register";
-    // return http.postData(credentials,signUpUrl).then(data=>{
-    //   //  console.log(JSON.stringify(data));
-    //     return data;
-    // }).catch((error)=> {console.log(error)
-    //     return error;
-    //      });
+    return http.postData(credentials, signUpUrl).then(data => {
+        //  console.log(JSON.stringify(data));
+        return data;
+    }).catch((error) => {
+        console.log(error)
+        return error;
+    });
 }
 
-export const saveFavoriteService = (credentials) =>{
+export const saveFavoriteService = (credentials) => {
     const http = new HttpService();
     // console.log(HttpService);
     let signUpUrl = "user/save-favorite";
-    return http.postData(credentials,signUpUrl).then(data=>{
-       // console.log(JSON.stringify(data));
+    return http.postData(credentials, signUpUrl).then(data => {
+        // console.log(JSON.stringify(data));
         console.log(JSON.stringify(data));
         return data;
-    }).catch((error)=> {console.log(error)
+    }).catch((error) => {
+        console.log(error)
         return error;
-         });
+    });
 }
-export const LoginUser = (credentials,propsHistory) =>{
+export const getFavoriteService = (credentials) => {
+    const http = new HttpService();
+    let signUpUrl = "user/get-favorite?page=" + credentials.page;
+
+    return  http.getData(signUpUrl).then(data => {
+
+        return data;
+    }).catch((error) => {
+        console.log(error)
+        return error;
+    });
+
+
+
+}
+export const LoginUser = (credentials, propsHistory) => {
     const http = new HttpService();
     // console.log(HttpService);
     let signUpUrl = "user/login";
-    return http.postData(credentials,signUpUrl).then(data=>{
+    return http.postData(credentials, signUpUrl).then(data => {
         console.log(JSON.stringify(data));
         return data;
-    }).catch((error)=> {console.log(error)
-   return error;
+    }).catch((error) => {
+        console.log(error)
+        return error;
     });
 }

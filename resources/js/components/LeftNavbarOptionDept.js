@@ -42,7 +42,7 @@ export default class LeftNavbarOptionDept extends Component {
 
                     <li className="nav-item nav-header">MORE</li>
                     <li className="nav-item">
-                        <a href="analytics.html" className="nav-link"><i className="la la-heart-o"></i><span>FAVORITE</span></a>
+                    <NavLink activeClassName="active" to="/favorite"  className="nav-link"><i className="la la-heart-o"></i><span>FAVORITE</span></NavLink>
                     </li>
                     <li className="nav-item">
                         <a href="analytics.html" className="nav-link"><i className="la la-bar-chart"></i><span>RESULTS</span></a>

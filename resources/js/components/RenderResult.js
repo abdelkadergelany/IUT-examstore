@@ -11,9 +11,7 @@ const mapDispatchToProps = dispatch => ({
 class RenderResult extends Component {
     constructor(props) {
         super(props);
-        this.state = {
 
-        };
         this.AddFavorite = this.AddFavorite.bind(this);
 
     }
@@ -23,7 +21,7 @@ class RenderResult extends Component {
      }
 
     render() {
-        //console.log(this.props.exam)
+        console.log(this.props.history.location.pathname)
           if(!this.props.fetching){
         return (
 
@@ -45,12 +43,23 @@ class RenderResult extends Component {
                             </div>
                             <ul className="custom-card--labels d-flex ml-auto">
 
-                                <li >
-                                    <a href="#" >
-                                        <i className="la la-heart-o"></i>
+                            {  this.props.history.location.pathname=='/favorite' &&
+                            <li >
+                              <span>
+                              <i class="las la-trash-alt"></i>
+                                  <span >Delete</span>
+                              </span>
+                          </li>
+                      }
+                      {  this.props.history.location.pathname!='/favorite' &&
+                                  <li >
+                                    <span>
+                                        <i className=" la la-heart-o"></i>
                                         <span onClick={() => this.AddFavorite(ex.id)}>Save</span>
-                                    </a>
+                                    </span>
                                 </li>
+                    }
+
                                 <li >
                                     <a href="#" >
                                     <i className="la  la-share-alt-square"></i>

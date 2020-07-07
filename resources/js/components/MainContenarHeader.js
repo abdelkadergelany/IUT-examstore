@@ -4,6 +4,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom'
 import AuthButton from './AuthButton';
+import SnackBar from './SnakBar';
 
 const mapStateToProps = state => {
     return {
@@ -22,7 +23,6 @@ const mapStateToProps = state => {
 
     }
     render() {
-
         function RenderAuthButton(props){
           if(props.isLoged ==="loged"){
             return <Profile/>
@@ -32,6 +32,8 @@ const mapStateToProps = state => {
         }
         console.log(this.props);
         return (
+            <div>
+
             <header id="header" className="bg-primary">
 
                 <div className="d-flex align-items-center">
@@ -52,6 +54,8 @@ const mapStateToProps = state => {
                 </div>
 
             </header>
+            <SnackBar />
+            </div>
         )
     }
 }

@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Favorite;
+use Illuminate\Support\Facades\DB;
+use App\PdfModel;
 use Exception;
 use JWTAuth;
 use Validator;
 use Illuminate\Support\Facades\Hash;
+use PhpParser\Node\Stmt\Global_;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends Controller
@@ -22,7 +25,42 @@ class AuthController extends Controller
     {
         $this->user = new User;
     }
+    public function getfavorite(Request $request)
+    {
+        try{
+            $user_token = $request->token;
+            $user = auth("users")->authenticate($user_token);
+            $user_id = $user->id;
+            $favlist = null;
+            if ($user_id != null){
+               // $favlist = Favorite::where('user', $user_id)->paginate(2);
+                $favlist =  DB::table('pdf_models')
+            ->join('favorites', function ($join) use ($user_id) {
+                $join->on('pdf_models.id', '=', 'favorites.pdf')
+                    ->where('favorites.user', '=', $user_id);
+            })->paginate(3);
+            return response()->json([
+                "success" => true,
+                "message" => 'loaded',
+                "data" => $favlist
+            ], 200);
+            }
+            else{
+                return response()->json([
+                    "success" => false,
+                    "message" => 'empty favorite',
+                ], 200);
+            }
 
+
+        }catch(\Exception $e){
+            return response()->json([
+                "success" => false,
+                "message" => 'error',
+            ], 400);
+        }
+
+    }
     public function savefavorite(Request $request)
     {
 
@@ -31,7 +69,7 @@ class AuthController extends Controller
         $user = auth("users")->authenticate($user_token);
         $user_id = $user->id;
         if ($user_id != null) {
-            $fav =  Favorite::create([
+            $fav =  Favorite::firstOrCreate([
                 'user' => $user_id,
                 'pdf' => $request->id
             ]);
