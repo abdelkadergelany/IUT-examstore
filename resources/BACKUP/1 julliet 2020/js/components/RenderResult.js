@@ -40,7 +40,7 @@ export default class RenderResult extends Component {
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="#" >
+                                    <a href={"http://localhost:8000/api/downloadPdf?pdf"+ex.pdf} >
                                         <i className="la la-heart-o"></i>
                                         <span>download</span>
                                     </a>

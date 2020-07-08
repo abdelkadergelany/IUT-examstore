@@ -30,7 +30,7 @@ const mapStateToProps = state => {
             return <AuthButton/>
           }
         }
-        console.log(this.props);
+
         return (
             <div>
 

@@ -38,6 +38,7 @@
         "react-promise-tracker": "^2.1.0",
         "react-redux": "^7.2.0",
         "react-router-dom": "^5.2.0",
+        "react-share": "^4.2.0",
         "react-simple-snackbar": "^1.1.10",
         "react-snackbar-alert": "^2.1.0",
         "react-spinners": "^0.9.0",

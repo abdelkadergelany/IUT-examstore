@@ -89,8 +89,8 @@ else{
                                         <span>share</span>
                                     </a>
                                 </li>
-                                <li >
-                                    <a href="#" >
+                                <li>
+                                    <a href={"http://localhost:8000/api/downloadPdf?pdf="+ex.pdf} >
                                         <i className="la la-heart-o"></i>
                                         <span>download</span>
                                     </a>

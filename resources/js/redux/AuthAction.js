@@ -13,7 +13,7 @@ export const signUp = (credentials) =>{
         if(credentials.password.length < 6){
             return dispatch({type: 'SHORT_PASSWORD'})
         }
-
+        trackPromise(
         SignUpService(credentials).then((res)=>{
            // console.log(res);
             if(res.token!==null){
@@ -29,6 +29,7 @@ export const signUp = (credentials) =>{
         }
 
         )
+        );
     }
 
 }
@@ -52,13 +53,12 @@ export const UserLogin = (credentials,history) =>{
      {
         return dispatch({type: 'SHORT_PASSWORD'})
      }
+     trackPromise(
      LoginUser(credentials,history).then((res)=>{
-        // console.log(res);
          if(res.success==true){
             localStorage.setItem("user",'Bearer '+res.token);
             dispatch({type:'LOGIN_SUCCESS'})
             browserHistory.push("/");
-
 
         }else{
             dispatch({type:'LOGIN_ERROR',res})
@@ -66,10 +66,10 @@ export const UserLogin = (credentials,history) =>{
     },
     error=>{
         dispatch({type:'CODE_ERROR',error});
-     //   console.log(error)
     }
 
      )
+     );
  }
 }
 export const closeSnake = (p) =>{
@@ -77,27 +77,21 @@ export const closeSnake = (p) =>{
 }
 export const deleteFavorite = (credentials) =>{
     return (dispatch)=>{
-
       return trackPromise(
         deleteFavoriteService(credentials).then((res)=>{
             if(res.success==true){
              // console.log(res)
                 dispatch({type:'DELETE_FAVORITE_SUCCESS',res})
-
             }else{
                  dispatch({type:'DELETE_FAVORITE_ERROR',res})
-
             }
         },
         error=>{
             dispatch({type:'CODE_ERROR',error});
         }
-
         )
-
         );
     }
-
 }
 export const getFavorite = (credentials) =>{
       return (dispatch)=>{

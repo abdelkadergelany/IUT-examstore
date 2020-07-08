@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/pdf', 'PdfController@getPdf')->name('home');
+Route::get('downloadPdf','PdfController@downloadPdf');
 
 
 Route::group([
@@ -31,7 +32,6 @@ function(){
     Route::post('save-favorite','AuthController@savefavorite');
     Route::get('get-favorite','AuthController@getfavorite');
     Route::get('delete-favorite','AuthController@deletefavorite');
-
 
 }
 );

@@ -101929,21 +101929,7 @@ var LeftNavbarOptionDept = /*#__PURE__*/function (_Component) {
         className: "nav-link"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "la la-heart-o"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "FAVORITE"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "nav-item"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "analytics.html",
-        className: "nav-link"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "la la-bar-chart"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "RESULTS"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "nav-item"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "favorites.html",
-        className: "nav-link"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "las la-users"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "FORUM")))));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "FAVORITE")))));
     }
   }]);
 
@@ -102549,7 +102535,6 @@ var MainContenarHeader = /*#__PURE__*/function (_Component) {
         }
       }
 
-      console.log(this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
         id: "header",
         className: "bg-primary"
@@ -103056,7 +103041,7 @@ var RenderResult = /*#__PURE__*/function (_Component) {
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
             className: "la  la-share-alt-square"
           }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "share"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-            href: "#"
+            href: "http://localhost:8000/api/downloadPdf?pdf=" + ex.pdf
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
             className: "la la-heart-o"
           }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "download"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
@@ -103833,7 +103818,7 @@ var signUp = function signUp(credentials) {
       });
     }
 
-    Object(_services_AuthService__WEBPACK_IMPORTED_MODULE_0__["SignUpService"])(credentials).then(function (res) {
+    Object(react_promise_tracker__WEBPACK_IMPORTED_MODULE_2__["trackPromise"])(Object(_services_AuthService__WEBPACK_IMPORTED_MODULE_0__["SignUpService"])(credentials).then(function (res) {
       // console.log(res);
       if (res.token !== null) {
         localStorage.setItem("user", 'Bearer ' + res.token);
@@ -103852,7 +103837,7 @@ var signUp = function signUp(credentials) {
         type: 'CODE_ERROR',
         error: error
       });
-    });
+    }));
   };
 };
 var UserLogout = function UserLogout() {
@@ -103878,8 +103863,7 @@ var UserLogin = function UserLogin(credentials, history) {
       });
     }
 
-    Object(_services_AuthService__WEBPACK_IMPORTED_MODULE_0__["LoginUser"])(credentials, history).then(function (res) {
-      // console.log(res);
+    Object(react_promise_tracker__WEBPACK_IMPORTED_MODULE_2__["trackPromise"])(Object(_services_AuthService__WEBPACK_IMPORTED_MODULE_0__["LoginUser"])(credentials, history).then(function (res) {
       if (res.success == true) {
         localStorage.setItem("user", 'Bearer ' + res.token);
         dispatch({
@@ -103896,8 +103880,8 @@ var UserLogin = function UserLogin(credentials, history) {
       dispatch({
         type: 'CODE_ERROR',
         error: error
-      }); //   console.log(error)
-    });
+      });
+    }));
   };
 };
 var closeSnake = function closeSnake(p) {
