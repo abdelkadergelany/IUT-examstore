@@ -9,7 +9,7 @@ export default class LeftNavbarHeader extends Component {
             </a>
 
             <button type="button" className="btn p-0 ml-auto" id="hideSidebar">
-            <i className="la-3x las la-arrow-circle-left"></i>
+                <i className="ion-md-arrow-back h3"></i>
             </button>
 
             <button type="button" className="btn toggle-menu" id="toggleSidebar">

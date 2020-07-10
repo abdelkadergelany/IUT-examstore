@@ -65,7 +65,7 @@ const mapDispatchToProps = dispatch => ({
                     <br />
 
                     <FormControl fullWidth style={margin} variant="outlined">
-                        <TextField onChange={this.handleChange} required={true} type='password'  id="password" label="password" variant="outlined" />
+                        <TextField onChange={this.handleChange} type='password' required={true} id="password" label="password" variant="outlined" />
                     </FormControl>
 
                     <br />

@@ -1,7 +1,7 @@
 const initState = {
     authResponse: null,
     snakbar: false,
-    favoriteList: null
+    favoriteList:null
 }
 
 
@@ -66,25 +66,20 @@ const AuthReducer = (state = initState, action) => {
 
         case 'GET_FAVORITE_SUCCESS':
 
-            return { ...state, snakbar: false, snakbarMessage: '', favoriteList: action.res }
-        case 'GET_FAVORITE_ERROR':
+            return { ...state, snakbar: false, snakbarMessage: '',favoriteList:action.res }
+            case 'GET_FAVORITE_ERROR':
 
-            return { ...state, snakbar: true, snakbarMessage: 'Login to view your favorite', favoriteList: null }
-        case 'DELETE_FAVORITE_SUCCESS':
+            return { ...state, snakbar: true, snakbarMessage: 'Login to view your favorite',favoriteList:null }
+            case 'DELETE_FAVORITE_SUCCESS':
 
-            return { ...state, snakbar: true, snakbarMessage: 'favorite deleted' }
-        case 'DELETE_FAVORITE_ERROR':
+            return { ...state, snakbar: true, snakbarMessage: 'favorite deleted'}
+            case 'DELETE_FAVORITE_ERROR':
 
-            return { ...state, snakbar: true, snakbarMessage: 'sorry error deleting favorite' }
-        case 'POST_PAPER_SUCCESS':
-            return { ...state, snakbar: true, snakbarMessage: 'thanks for sharing. uploaded successfully' }
-            case 'POST_PAPER_ERROR':
-
-            return { ...state, snakbar: true, snakbarMessage: 'sorry error uploading the file' }
+            return { ...state, snakbar: true, snakbarMessage: 'sorry error deleting favorite'}
         case 'CLOSE_SNAKE':
 
             return { ...state, snakbar: false, snakbarMessage: '' }
-        case 'CODE_ERROR':
+            case 'CODE_ERROR':
 
             return { ...state, snakbar: true, snakbarMessage: 'Sorry an error occured' }
 

@@ -10,7 +10,6 @@ import {LoadingIndicator} from './LoadingIndicator'
 import Login from './Login';
 import Register from './Register';
 import Favorite from './Favorite';
-import SubmitPaper from './SubmitPaper';
 
 
 
@@ -43,7 +42,6 @@ import SubmitPaper from './SubmitPaper';
                         <Route exact path='/login' component={Login} />
                         <Route exact path='/register' component={Register} />
                         <Route exact path='/favorite' component={Favorite} />
-                        <Route exact path='/submit' component={SubmitPaper} />
                         <Route path="/department/:dept/semester/:sem" render={({match}) => (<ResultList sem={match.params.sem}  dept={match.params.dept} />)}/>
                         <Route path="/department/:dept" render={({match}) => (<Semester dept={match.params.dept} />)}/>
                         <Redirect to="/home" />

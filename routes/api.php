@@ -17,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-
+Route::get('/admin', 'AdminController@addPaper')->name('addPaper');
 Route::get('/pdf', 'PdfController@getPdf')->name('home');
-Route::get('downloadPdf','PdfController@downloadPdf');
+Route::get('/downloadPdf','PdfController@downloadPdf');
+Route::post('/post-paper','PdfController@postpaper');
+
 
 
 Route::group([

@@ -26,26 +26,6 @@ export const FETCH_EXAMS = (param) => (dispatch) => {
 
     );
 };
-export const POST_PAPER = (param) => (dispatch) => {
-
-    return trackPromise(
-        fetch('http://localhost:8000/api/post-paper',{
-            method: 'POST',
-            body:param
-        })
-            .then(response => {return response},
-                error => {
-                    var errmess = new Error(error.message);
-                     console.log(errmess);
-                    throw errmess;
-                })
-            .then(response =>response.json())
-            .then(response => dispatch({ type: 'POST_PAPER_SUCCESS', payload: response }))
-            .catch(error => {
-                console.log(error);
-                dispatch({ type: 'POST_PAPER_ERROR',payload: error.message })})
-    );
-};
 
 export const SET_FILTER = (param) => (dispatch) => {
     return dispatch({ type: ActionTypes.SET_FILTER, payload: param })

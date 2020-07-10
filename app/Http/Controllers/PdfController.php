@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\PdfModel;
+use App\Submited_Paper;
 use Illuminate\Http\Request;
 use Mockery\Matcher\Closure;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+
 
 class PdfController extends Controller
 {
@@ -13,16 +18,57 @@ class PdfController extends Controller
     public function index(Request $request)
     {
     }
+    public function postpaper(Request $request)
+    {
+
+       //   return ($request->input('department'));
+       try{
+             $data =  $request->all();
+
+             // return $data['file'];
+
+        $folder_name = Str::random(6);
+        $files = $data['file'];
+        if(!empty($files)) {
+            foreach($files as $file) {
+              Storage::disk('local')->putFile('public/submited_pdf/'.$folder_name,  $file);
+
+            }
+        }
+
+        $paper =  Submited_Paper::create([
+            'department' => $data['department'],
+            'semester' => $data['semester'],
+            'type' => $data['type'] ,
+            'year' => $data['year'],
+            'folder' => $folder_name
+
+        ]);
+              return response()->json([
+                "success" => true,
+                "message" => 'uploaded succesfully',
+            ], 200);
+        }
+        catch (\Exception $e) {
+            return response()->json([
+                "success" => false,
+                "message" => $e,
+            ], 500);
+        }
+
+    }
     public function downloadPdf(Request $request)
-    {    $headers =null;
-      //  return response()->download(public_path('storage/pdf/CSE_4678_Midterm2017pdf.pdf'),$headers);
-        $headers = array(
-            'Content-Type: application/pdf'
+    {
+        try {
+            $headers = null;
+            $headers = array(
+                'Content-Type: application/pdf'
             );
             $filename = $request->pdf;
-                     //  return Response::download($file,"Input Group.pdf",$headers);
-           return response()->download(public_path('storage/pdf/'.$filename), $filename,$headers);
-
+            return response()->download(public_path('storage/pdf/' . $filename), $filename, $headers);
+        } catch (\Exception $e) {
+            return ("404!!!  SORRY FILE NOT FOUND");
+        }
     }
     public function getPdf(Request $request)
     {
