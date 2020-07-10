@@ -18,9 +18,12 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::get('/admin', 'AdminController@addPaper')->name('addPaper');
+
 Route::get('/pdf', 'PdfController@getPdf')->name('home');
 Route::get('/downloadPdf','PdfController@downloadPdf');
 Route::post('/post-paper','PdfController@postpaper');
+
+Route::post('/postpdf','AdminController@adminpdf')->name('adminpost');
 
 
 
@@ -29,6 +32,7 @@ Route::group([
     'namespace'=>'User',
 ],
 function(){
+
     Route::post('register','AuthController@register');
     Route::post('login','AuthController@login');
     Route::post('save-favorite','AuthController@savefavorite');

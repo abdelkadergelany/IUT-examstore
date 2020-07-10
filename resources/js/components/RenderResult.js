@@ -62,7 +62,7 @@ class RenderResult extends Component {
 
                                     <div className="custom-card--inline-desc">
                                         <p className="text-truncate mb-0">{ex.title}</p>
-                                        <p className="text-truncate text-muted font-sm">{ex.program} </p>
+                                        <p className="text-truncate text-muted font-sm">{ex.course_name} </p>
                                     </div>
                                 </div>
                                 <ul className="custom-card--labels d-flex ml-auto">

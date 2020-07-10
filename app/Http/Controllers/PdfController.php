@@ -59,17 +59,20 @@ class PdfController extends Controller
     }
     public function downloadPdf(Request $request)
     {
-        try {
+       try {
             $headers = null;
             $headers = array(
                 'Content-Type: application/pdf'
             );
             $filename = $request->pdf;
-            return response()->download(public_path('storage/pdf/' . $filename), $filename, $headers);
-        } catch (\Exception $e) {
+            $outputName = basename($request->pdf).PHP_EOL;
+            return response()->download(public_path('storage/' . $filename), $outputName, $headers);
+        }
+        catch (\Exception $e) {
             return ("404!!!  SORRY FILE NOT FOUND");
         }
     }
+
     public function getPdf(Request $request)
     {
         $res = null;

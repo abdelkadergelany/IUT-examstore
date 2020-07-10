@@ -106991,7 +106991,7 @@ var RenderResult = /*#__PURE__*/function (_Component) {
             className: "text-truncate mb-0"
           }, ex.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
             className: "text-truncate text-muted font-sm"
-          }, ex.program, " "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          }, ex.course_name, " "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
             className: "custom-card--labels d-flex ml-auto"
           }, _this2.props.history.location.pathname == '/favorite' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
             className: "las la-trash-alt"
