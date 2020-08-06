@@ -1,2 +1,3 @@
 # examstore React - laravel
- Examstore React - laravel for managing past exams paper of IUT
+This is  Examstore a  React - laravel WEB APPLICATION project for managing past exams papers of IISLAMIC UNIVERSITY OF TECHNOLOGY
+email at gelany740@gmail.com
