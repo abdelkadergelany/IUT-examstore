@@ -183,9 +183,13 @@ class AuthController extends Controller
             ]);
         }
 
+        $user = auth("users")->authenticate($jwt_token);
+        $user_name = $user->name;
+       // $user_name = 'alyu';
         return response()->json([
             'success' => true,
             'token' => $jwt_token,
+            'name' => $user_name
         ]);
     }
 }

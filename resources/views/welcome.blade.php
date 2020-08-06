@@ -4,8 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>epreuvesgratuit</title>
     <link href="/favicon.png" rel="icon" />
     <!-- Styles -->
     <link href="{{ asset('/css/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
@@ -20,6 +18,10 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <!--[endif]-->
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+    {!! Twitter::generate() !!}
+    {!! Artesaos\SEOTools\Facades\JsonLd::generate() !!}
 </head>
 
 <body>

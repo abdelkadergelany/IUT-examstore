@@ -68,8 +68,8 @@ class ResultList extends Component {
                 <Container maxWidth="md">
                 <Pagination
                 activePage={this.state.activePage}
-                itemsCountPerPage={3}
-                totalItemsCount={this.props.Exams.last_page * 3}
+                itemsCountPerPage={10}
+                totalItemsCount={this.props.Exams.last_page * 10}
                 pageRangeDisplayed={this.props.Exams.last_page}
                 onChange={this.handlePageChange.bind(this)}
                 itemClass="page-item"

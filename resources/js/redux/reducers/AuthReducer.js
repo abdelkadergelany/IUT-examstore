@@ -43,8 +43,8 @@ const AuthReducer = (state = initState, action) => {
                 authResponse: 'there seems to be a problem please try again later', snakbar: true, snakbarMessage: 'there seems to be a problem please try again later'
             }
         case 'LOGIN_SUCCESS':
-            // console.log(action)
-            return { ...state, authResponse: 'loged', snakbar: true, snakbarMessage: 'Welcome' }
+
+            return { ...state, authResponse: 'loged', snakbar: true, snakbarMessage: 'Welcome', username:action.res.name }
         case 'LOGIN_ERROR':
             // console.log(action)
             return {

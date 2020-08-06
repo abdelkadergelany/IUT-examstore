@@ -22,7 +22,8 @@ class AdminController extends Controller
 
         $data =  $request->all();
         $pdf_name = $data['coursecode'].'_'.$data['type'].'_'.$data['year'].'.pdf';
-        $path = 'public/pdf/'.$data['department'].'/'.'semester'.$data['semester'].'/'. $pdf_name;
+        //$path = 'public/pdf/'.$data['department'].'/'.'semester'.$data['semester'].'/'. $pdf_name;
+        $path = 'pdf/'.$data['department'].'/'.'semester'.$data['semester'].'/'. $pdf_name;
         $file = $data['file'];
         if($file != null) {
 

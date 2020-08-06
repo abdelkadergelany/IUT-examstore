@@ -43,12 +43,12 @@ const mapStateToProps = state => {
                         <span></span>
                         <span></span>
                     </button>
-                    <label htmlFor="searchInput"> <SearchIcon/></label>
+                    <label htmlFor="searchInput"> </label>
                     <form action="#" id="searchForm">
 
-                        <input type="text" placeholder="Search..." id="searchInput" className="form-control" />
 
-                    </form>
+
+                     </form>
                          <RenderAuthButton isLoged={this.props.Auth.authResponse}/>
 
                 </div>

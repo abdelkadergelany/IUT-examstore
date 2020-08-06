@@ -106385,34 +106385,32 @@ var MainContenarFooter = /*#__PURE__*/function (_Component) {
         className: "bg-img"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-content"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "email"
-      }, "info@listenapp.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "platform-btn-inline"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
+        href: "https://camertechshop.com/",
+        target: "_blank",
         className: "btn btn-dark btn-air platform-btn"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "ion-logo-android"
+        className: "las la-shopping-cart"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "platform-btn-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "platform-desc"
-      }, "Available on"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "platform-name"
-      }, "Android"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
+      }, "Shop Now"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://blog.camertechshop.com/",
+        target: "_blank",
         className: "btn btn-danger btn-air platform-btn"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "ion-logo-apple"
+        className: "lab la-blogger"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "platform-btn-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "platform-desc"
-      }, "Available on"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "platform-name"
-      }, "App Store"))))));
+      }, "Visit our blog"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "developped by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        target: "_blank",
+        href: "https://camertechshop.com/contactus"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Camertec"))))));
     }
   }]);
 
@@ -106516,15 +106514,10 @@ var MainContenarHeader = /*#__PURE__*/function (_Component) {
         id: "openSidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "searchInput"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Search__WEBPACK_IMPORTED_MODULE_2___default.a, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         action: "#",
         id: "searchForm"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        placeholder: "Search...",
-        id: "searchInput",
-        className: "form-control"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RenderAuthButton, {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RenderAuthButton, {
         isLoged: this.props.Auth.authResponse
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SnakBar__WEBPACK_IMPORTED_MODULE_6__["default"], null));
     }
@@ -106587,6 +106580,13 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    Auth: state.Auth
+  };
+};
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     UserLogout: function UserLogout() {
@@ -106640,15 +106640,16 @@ var Profile = /*#__PURE__*/function (_Component) {
         alt: "user"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "pl-2"
-      }, "Halo Admin")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.Auth.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dropdown-menu dropdown-menu-right",
         "aria-labelledby": "userMenu"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "dropdown-item",
         href: "#"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_3___default.a, null), "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "dropdown-item",
-        href: "#"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_3___default.a, null), "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["NavLink"], {
+        activeClassName: "active",
+        to: "/favorite",
+        className: "nav-link"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Favorite__WEBPACK_IMPORTED_MODULE_2___default.a, null), "Favoris"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dropdown-divider"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -106662,7 +106663,7 @@ var Profile = /*#__PURE__*/function (_Component) {
   return Profile;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mapDispatchToProps)(Profile)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchToProps)(Profile)));
 
 /***/ }),
 
@@ -107187,8 +107188,8 @@ var ResultList = /*#__PURE__*/function (_Component) {
             maxWidth: "md"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_6___default.a, {
             activePage: this.state.activePage,
-            itemsCountPerPage: 3,
-            totalItemsCount: this.props.Exams.last_page * 3,
+            itemsCountPerPage: 10,
+            totalItemsCount: this.props.Exams.last_page * 10,
             pageRangeDisplayed: this.props.Exams.last_page,
             onChange: this.handlePageChange.bind(this),
             itemClass: "page-item",
@@ -108159,7 +108160,8 @@ var UserLogin = function UserLogin(credentials, history) {
       if (res.success == true) {
         localStorage.setItem("user", 'Bearer ' + res.token);
         dispatch({
-          type: 'LOGIN_SUCCESS'
+          type: 'LOGIN_SUCCESS',
+          res: res
         });
         browserHistory.push("/");
       } else {
@@ -108375,11 +108377,11 @@ var AuthReducer = function AuthReducer() {
       });
 
     case 'LOGIN_SUCCESS':
-      // console.log(action)
       return _objectSpread(_objectSpread({}, state), {}, {
         authResponse: 'loged',
         snakbar: true,
-        snakbarMessage: 'Welcome'
+        snakbarMessage: 'Welcome',
+        username: action.res.name
       });
 
     case 'LOGIN_ERROR':

@@ -5,7 +5,13 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import { UserLogout } from '../redux/AuthAction';
+import { NavLink } from 'react-router-dom';
 
+const mapStateToProps = state => {
+    return {
+        Auth: state.Auth,
+    }
+}
 
 const mapDispatchToProps = dispatch => ({
     UserLogout: () => dispatch(UserLogout()),
@@ -34,11 +40,11 @@ const mapDispatchToProps = dispatch => ({
                     <li className="dropdown linear">
                         <a href="#" className="d-flex align-items-center py-2" role="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div className="avatar avatar-sm avatar-circle"><img src="/images/users/thumb.jpg" alt="user" /></div>
-                            <span className="pl-2">Halo Admin</span>
+                            <span className="pl-2">{this.props.Auth.username}</span>
                         </a>
                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
                             <a className="dropdown-item" href="#"><AccountCircleIcon/>Profile</a>
-                            <a className="dropdown-item" href="#"><FavoriteIcon/>Favoris</a>
+                            <NavLink activeClassName="active" to="/favorite"  className="nav-link"><FavoriteIcon/>Favoris</NavLink>
                             <div className="dropdown-divider"></div>
                             <div className="px-4 py-2">
 
@@ -51,4 +57,4 @@ const mapDispatchToProps = dispatch => ({
         )
     }
 }
-export default withRouter(connect(null, mapDispatchToProps)(Profile));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile));

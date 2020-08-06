@@ -5,22 +5,22 @@ export default class MainContenarFooter extends Component {
         return (
             <footer id="footer" className="bg-img">
                 <div className="footer-content">
-                    <a href="#" className="email">info@listenapp.com</a>
                     <div className="platform-btn-inline">
-                        <a href="#" className="btn btn-dark btn-air platform-btn">
-                            <i className="ion-logo-android"></i>
+                        <a href="https://camertechshop.com/" target="_blank" className="btn btn-dark btn-air platform-btn">
+                        <i className="las la-shopping-cart"></i>
                             <div className="platform-btn-info">
-                                <span className="platform-desc">Available on</span>
-                                <span className="platform-name">Android</span>
+                                <span className="platform-desc">Shop Now</span>
+
                             </div>
                         </a>
-                        <a href="#" className="btn btn-danger btn-air platform-btn">
-                            <i className="ion-logo-apple"></i>
+                        <a href="https://blog.camertechshop.com/" target="_blank" className="btn btn-danger btn-air platform-btn">
+                        <i className="lab la-blogger"></i>
                             <div className="platform-btn-info">
-                                <span className="platform-desc">Available on</span>
-                                <span className="platform-name">App Store</span>
+                                <span className="platform-desc">Visit our blog</span>
+
                             </div>
                         </a>
+                        <br/><br/><span>developped by <a target="_blank" href="https://camertechshop.com/contactus"><b>Camertec</b></a></span>
                     </div>
                 </div>
             </footer>

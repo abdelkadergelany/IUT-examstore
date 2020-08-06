@@ -67,8 +67,11 @@ class PdfController extends Controller
             $filename = $request->pdf;
             $outputName = basename($request->pdf).PHP_EOL;
             return response()->download(public_path('storage/' . $filename), $outputName, $headers);
+            //return response()->download(public_path('/' . $filename), $outputName, $headers);
+
         }
         catch (\Exception $e) {
+            return $e;
             return ("404!!!  SORRY FILE NOT FOUND");
         }
     }
@@ -77,24 +80,24 @@ class PdfController extends Controller
     {
         $res = null;
         if ($request->year == 'all' & $request->type == 'all') {
-            $res = PdfModel::where('dept', 'like', $request->dept)->where('semester', 'like', (int) $request->sem)->paginate(3);
+            $res = PdfModel::where('dept', 'like', $request->dept)->where('semester', 'like', (int) $request->sem)->paginate(10);
         }
 
         if ($request->year != 'all' & $request->type == 'all') {
             $res = PdfModel::where('dept', 'like', $request->dept)
                 ->where('year', 'like', $request->year)
-                ->where('semester', 'like', (int) $request->sem)->paginate(3);
+                ->where('semester', 'like', (int) $request->sem)->paginate(10);
         }
         if ($request->year == 'all' & $request->type != 'all') {
             $res = PdfModel::where('dept', 'like', $request->dept)
                 ->where('type', 'like', $request->type)
-                ->where('semester', 'like', (int) $request->sem)->paginate(3);
+                ->where('semester', 'like', (int) $request->sem)->paginate(10);
         }
         if ($request->year != 'all' & $request->type != 'all') {
             $res = PdfModel::where('dept', 'like', $request->dept)
                 ->where('year', 'like', $request->year)
                 ->where('type', 'like', $request->type)
-                ->where('semester', 'like', (int) $request->sem)->paginate(3);
+                ->where('semester', 'like', (int) $request->sem)->paginate(10);
         }
 
 

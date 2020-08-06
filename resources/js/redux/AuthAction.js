@@ -57,7 +57,7 @@ export const UserLogin = (credentials,history) =>{
      LoginUser(credentials,history).then((res)=>{
          if(res.success==true){
             localStorage.setItem("user",'Bearer '+res.token);
-            dispatch({type:'LOGIN_SUCCESS'})
+            dispatch({type:'LOGIN_SUCCESS',res})
             browserHistory.push("/");
 
         }else{
