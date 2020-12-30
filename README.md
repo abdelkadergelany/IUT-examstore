@@ -26,6 +26,8 @@ Download the project and go to the root directory and run:
  **$ npm install**
  # To start :  
  Go to the root directory and run **php -S localhost:8000 -t public**  
+ The uploaded PDFs fles are located at /storage/app/public/pdf/cse/
+ For experiment purpose import the SQL data located at IUT-examstore/tests/iutexamstore.sql
  
  # screenshots
 
