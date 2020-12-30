@@ -9,7 +9,7 @@ had become difficult for students to access old test papers. So this was designe
 4- filter question by exam type(Quiz, Midterm, or Final exam).   
 5- Filter Questions by year.  
 6- Save question paper as favorite.   
-7- Share question paper. 
+7- Share question paper.  
 8- Download question paper as PDF.  
 9- Submit an exam paper for administrator approval 
 
