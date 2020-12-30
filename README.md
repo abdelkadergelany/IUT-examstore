@@ -4,14 +4,16 @@ This Project was developed in a context of social distancing imposed by the covi
 had become difficult for students to access old test papers. So this was designed to solve this problem. 
 # Functionalities:
 1- Student can browse questions by department.  
-2- browse questions by semester.  
-3- browse questions by semester.   
-4- filter question by exam type(Quiz, Midterm, or Final exam).   
-5- Filter Questions by year.  
-6- Save question paper as favorite.   
-7- Share question paper.  
-8- Download question paper as PDF.  
-9- Submit an exam paper for administrator approval 
+2- browse questions by semester.     
+3- filter question by exam type(Quiz, Midterm, or Final exam).   
+4- Filter Questions by year.  
+5- Save question paper as favorite.   
+6- Share question paper.  
+7- Download question paper as PDF.  
+8- Submit an exam paper for administrator approval 
+
+# Features
+The system is mobile responsive and secured
 
 # Development
 The App was developed with React JS for Front-end and Laravel for Back-end.  
