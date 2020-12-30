@@ -3,14 +3,17 @@ This is IUT-examstore, a  React - laravel WEB APPLICATION project for managing p
 This Project was developed in a context of social distancing imposed by the covid-19 pandemic. With closed schools and libraries, it
 had become difficult for students to access old test papers. So this was designed to solve this problem. 
 # Functionalities:
-1- Student can browse questions by department.  
-2- browse questions by semester.     
-3- filter question by exam type(Quiz, Midterm, or Final exam).   
-4- Filter Questions by year.  
-5- Save question paper as favorite.   
-6- Share question paper.  
-7- Download question paper as PDF.  
-8- Submit an exam paper for administrator approval 
+1- Register.   
+2- Login.  
+3- Student can browse questions by department.  
+4- browse questions by semester.     
+5- filter question by exam type(Quiz, Midterm, or Final exam).   
+6- Filter Questions by year.  
+7- Save question paper as favorite.   
+8- Share question paper.  
+9- Download question paper as PDF.  
+10- Submit an exam paper for administrator approval 
+
 
 # Features
 The system is mobile responsive and secured
