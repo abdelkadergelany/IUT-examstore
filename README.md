@@ -1,11 +1,5 @@
-# examstore React - laravel
-This is  Examstore a  React - laravel WEB APPLICATION project for managing past exams papers of IISLAMIC UNIVERSITY OF TECHNOLOGY
-email at gelany740@gmail.com
-# Mobile-Flashcards
-```
-_____________________________________________/-------------------\______________________________________________________
-```
-Examstore is a Laravel-React web application for managing past question papers at the Islamic University of Technology, OIC- Dhaka.  
+# IUT-examstore 
+This is IUT-examstore, a  React - laravel WEB APPLICATION project for managing past exams papers at the ISLAMIC UNIVERSITY OF TECHNOLOGY, OIC- Dhaka.
 This Project was developed in a context of social distancing imposed by the covid-19 pandemic. With closed schools and libraries, it
 had become difficult for students to access old test papers. So this was designed to solve this problem. 
 # Functionalities:
