@@ -14,18 +14,18 @@ had become difficult for students to access old test papers. So this was designe
 9- Submit an exam paper for administrator approval 
 
 # Development
-The App was developed with React JS for Front-end and Laravel for Back-end.
-# Database
-Server type: MariaDB
-Server version: 10.1.38-MariaDB - mariadb.org binary distribution
+The App was developed with React JS for Front-end and Laravel for Back-end.  
+# Database 
+Server type: MariaDB  
+Server version: 10.1.38-MariaDB - mariadb.org binary distribution  
 Protocol version: 10
 
  # Installation
-To install all the dependencies: 
-Download the project and go to the root directory and run:
+To install all the dependencies:   
+Download the project and go to the root directory and run:  
  **$ npm install**
- # To start :
- Go to the root directory and run **php -S localhost:8000 -t public** 
+ # To start :  
+ Go to the root directory and run **php -S localhost:8000 -t public**  
  
  # screenshots
 
